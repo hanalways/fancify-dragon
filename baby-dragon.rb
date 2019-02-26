@@ -1,10 +1,16 @@
 class BabyDragon
-
   def initialize(name)
     @name = name
 
     @hungriness_level = 10
     @is_asleep = false
+    @thirst_level = 10
+  end
+
+  def drink
+    @thirst_level = 10
+    puts "WOW! #{@name} just drank 3 liters of Mountain Dew!"
+    process_time
   end
 
   def eat
@@ -33,6 +39,10 @@ class BabyDragon
     puts "The passage of time moves on..."
     if @hungriness_level > 0
       @hungriness_level -= 1
+    elsif @thirst_level > 0
+      @thirst_level -= 1
+    elsif @thirst_level < 2
+      puts "Give that dragon some Mountain Dew!"
     else
       if @is_asleep
         @is_asleep = false
@@ -42,7 +52,6 @@ class BabyDragon
       exit
     end
   end
-
 end
 
 dees_dragon = BabyDragon.new("Robert")
