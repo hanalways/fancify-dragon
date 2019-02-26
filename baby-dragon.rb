@@ -10,12 +10,30 @@ class BabyDragon
   def drink
     @thirst_level = 10
     puts "WOW! #{@name} just drank 3 liters of Mountain Dew!"
+    puts "\n
+     ____ __
+     { --.\  |          
+      '-._\\ | (\___   ...so thirsty!
+          `\\|{/ ^ _) 
+      .'^^^^^^^  /` ||____ 
+      //\   ) ,  /   |  MTN | 
+,  _.'/  `\<-- \<     |  DEW |
+`^^^`     ^^   ^^   -------"
     process_time
   end
 
   def eat
     @hungriness_level = 10
     puts "#{@name} ate like 6 bags of marshmallows (yo...)"
+    puts "\n
+    ____ __
+    { --.\  |          
+     '-._\\ | (\___   ...so toasty!!
+         `\\|{/ ^ _)  %%%%~~~
+     .'^^^^^^^  /`  ~%%%~~~~  
+     //\   ) ,  /  ( / / / / / / /)
+,  _.'/  `\<-- \<   | marshmallows |
+`^^^`     ^^   ^^ (..............)      "
 
     process_time
   end
@@ -60,7 +78,4 @@ dees_dragon.eat
 
 dees_dragon.sleep
 
-100.times do |i|
-  puts "This is the #{i}th time playing:"
-  dees_dragon.play
-end
+puts dees_dragon.eat
