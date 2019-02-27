@@ -13,7 +13,6 @@ class BabyDragon
   def drink
     @thirst_level = 10
     puts ColorizedString["WOW! #{@name} just drank 3 liters of Mountain Dew!"].green.on_white.blink
-    puts "mountain"
     puts "
      ____ __
      { --.\  |          
@@ -22,7 +21,7 @@ class BabyDragon
       .'^^^^^^^  /` ||____ 
       //\   ) ,  /   |  MTN | 
 ,  _.'/  `\<-- \<     |  DEW |
-`^^^`     ^^   ^^   -------"
+`^^^`     ^^   ^^   -------".colorize(:green)
     process_time
   end
 
@@ -37,19 +36,19 @@ class BabyDragon
      .'^^^^^^^  /`  ~%%%~~~~  
      //\   ) ,  /  ( / / / / / / /)
 ,  _.'/  `\<-- \<   | marshmallows |
-`^^^`     ^^   ^^ (..............)      "
+`^^^`     ^^   ^^ (..............)      ".colorize(:light_magenta)
 
     process_time
   end
 
   def sleep
     @is_asleep = true
-    puts "#{@name} curled up and fell asleep"
+    puts ColorizedString["#{@name} curled up and fell asleep"].white.on_blue
     puts "
       .'^^^^^^^^^^^^^.   
       //\  /  /   __/)|  so tired z Z z...  
 ,  _.'/ w   w   (_^ /  
-`^^^`   `- ^^   ^^ "
+`^^^`   `- ^^   ^^ ".colorize(:blue)
 
     process_time
     process_time
@@ -57,7 +56,7 @@ class BabyDragon
   end
 
   def play
-    puts "#{@name} takes out their yo-yo and walks a dog AND THEN JUMPS IN THE AIR AND FLIES"
+    puts ColorizedString["#{@name} takes out their yo-yo and walks a dog AND THEN JUMPS IN THE AIR AND FLIES"].white.on_green
     puts "
  ____    ____
 { --.\  {   /        
@@ -66,13 +65,13 @@ class BabyDragon
      .'^^^^^^^  /`  ~ so fly!  
      //\   ) ,  /
 ,  _.'/ `\<    ~` 
-`^^^`"
+`^^^`".colorize(:green)
     process_time
   end
 
   def exercise
     unless @thirst_level < 2 && @hungriness_level < 2
-      puts "#{@name} goes for a brisk jog."
+      puts ColorizedString["#{@name} goes for a brisk jog."].white.on_red
       puts "
 ____    ____               ____    ____
 { --.\  {   /  ~so fast~   {  --.\  {   /       
@@ -82,7 +81,7 @@ ____    ____               ____    ____
       //\   ) \ /            /|    //\  )  \ \
 
 ,  _.'/ `\<  >/           \ `._./ `\ '.  \ > 
-`^^^`"
+`^^^`".colorize(:red)
       @hungriness_level -= 2
       @thirst_level -= 2
       process_time
@@ -111,7 +110,7 @@ ____    ____               ____    ____
     if @thirst_level >= 7 && @thirst_level < 11
       puts "Give that dragon some Mountain Dew!"
     elsif @thirst_level >= 5 && @thirst_level < 7
-      puts ColorizedString["Uh oh. That dragon is \"thirsty thirsty \" ... you need to give him something to drink now!"].white.on_yellow
+      puts ColorizedString["Uh oh. That dragon is \"thirsty thirsty \" ... you need to give him something to drink now!"].black.on_yellow
     elsif @thirst_level > 2 && @thirst_level < 5
       puts ColorizedString["He is so thirsty he is dying!"].white.on_red.blink
     end
@@ -129,6 +128,43 @@ ____    ____               ____    ____
   end
 end
 
-dees_dragon = BabyDragon.new("Robert")
+def main
+  jirihamy = BabyDragon.new("Jirihamy")
 
-puts dees_dragon.exercise
+  loop do
+    puts "What would you like Jirihamy to do?
+    1. Eat
+    2. Drink
+    3. Sleep
+    4. Play
+    5. Exercise
+    6. Fly away (EXIT)"
+    input = gets.chomp
+
+    case input
+    when "1"
+      puts jirihamy.eat
+    when "2"
+      puts jirihamy.drink
+    when "3"
+      puts jirihamy.sleep
+    when "4"
+      puts jirihamy.play
+    when "5"
+      puts jirihamy.exercise
+    when "6"
+      puts "
+      ____    ____
+     { --.\  {   /        
+      '-._ \\   / (\___   
+           `\\ / {/ ^ _)  
+          .'^^^^^^^  /`  ~ bye - bye ~ !  
+          //\   ) ,  /
+     ,  _.'/ `\<    ~` 
+     `^^^`"
+      exit
+    end
+  end
+end
+
+main
