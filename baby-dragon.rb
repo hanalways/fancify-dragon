@@ -1,3 +1,6 @@
+require "colorize"
+require "colorized_string"
+
 class BabyDragon
   def initialize(name)
     @name = name
@@ -9,8 +12,9 @@ class BabyDragon
 
   def drink
     @thirst_level = 10
-    puts "WOW! #{@name} just drank 3 liters of Mountain Dew!"
-    puts "\n
+    puts ColorizedString["WOW! #{@name} just drank 3 liters of Mountain Dew!"].green.on_white.blink
+    puts "mountain"
+    puts "
      ____ __
      { --.\  |          
       '-._\\ | (\___   ...so thirsty!
@@ -25,7 +29,7 @@ class BabyDragon
   def eat
     @hungriness_level = 10
     puts "#{@name} ate like 6 bags of marshmallows (yo...)"
-    puts "\n
+    puts "
     ____ __
     { --.\  |          
      '-._\\ | (\___   ...so toasty!!
@@ -41,6 +45,11 @@ class BabyDragon
   def sleep
     @is_asleep = true
     puts "#{@name} curled up and fell asleep"
+    puts "
+      .'^^^^^^^^^^^^^.   
+      //\  /  /   __/)|  so tired z Z z...  
+,  _.'/ w   w   (_^ /  
+`^^^`   `- ^^   ^^ "
 
     process_time
     process_time
@@ -49,33 +58,51 @@ class BabyDragon
 
   def play
     puts "#{@name} takes out their yo-yo and walks a dog AND THEN JUMPS IN THE AIR AND FLIES"
-
+    puts "
+ ____    ____
+{ --.\  {   /        
+ '-._ \\   / (\___   
+      `\\ / {/ ^ _)  
+     .'^^^^^^^  /`  ~ so fly!  
+     //\   ) ,  /
+,  _.'/ `\<    ~` 
+`^^^`"
     process_time
   end
 
   def process_time
     puts "The passage of time moves on..."
-    if @hungriness_level > 0
-      @hungriness_level -= 1
-    elsif @thirst_level > 0
+    if @thirst_level > 0
       @thirst_level -= 1
-    elsif @thirst_level < 2
-      puts "Give that dragon some Mountain Dew!"
     else
       if @is_asleep
         @is_asleep = false
         puts "#{@name} woke up!"
       end
-      puts "#{@name} is hangry! They EAT YOU!"
+      puts "#{@name} ate you to drink your blood!"
+    end
+
+    puts "#{@thirst_level}"
+
+    if @thirst_level >= 7 && @thirst_level < 11
+      puts "Give that dragon some Mountain Dew!"
+    elsif @thirst_level >= 5 && @thirst_level < 7
+      puts "Uh oh. That dragon is \"thirsty thirsty \" ... you need to give him something to drink now!"
+    elsif @thirst_level > 2 && @thirst_level < 5
+      puts "He is so thirsty he is dying!"
+    end
+
+    if @hungriness_level > 0
+      @hungriness_level -= 1
+    else
+      if @is_asleep
+        @is_asleep = false
+        puts "#{@name} woke up!"
+      end
+      puts "#{@name} is hangry and thirsty! They EAT YOU!"
       exit
     end
   end
 end
 
 dees_dragon = BabyDragon.new("Robert")
-
-dees_dragon.eat
-
-dees_dragon.sleep
-
-puts dees_dragon.eat
