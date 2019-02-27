@@ -70,6 +70,32 @@ class BabyDragon
     process_time
   end
 
+  def exercise
+    unless @thirst_level < 2 && @hungriness_level < 2
+      puts "#{@name} goes for a brisk jog."
+      puts "
+____    ____               ____    ____
+{ --.\  {   /  ~so fast~   {  --.\  {   /       
+ '-._ \\   / (\___           '-._ \\   / (\___   
+       `\\ / {/ ^ _)             `\\ / {/ ^ _)
+    .'^^^^^^^  /`            .'^^^^^^^  /`    
+      //\   ) \ /            /|    //\  )  \ \
+
+,  _.'/ `\<  >/           \ `._./ `\ '.  \ > 
+`^^^`"
+      @hungriness_level -= 2
+      @thirst_level -= 2
+      process_time
+    end
+
+    if @thirst_level < 2
+      puts "#{@name} is too thirsty to exercise. Give him some Mountain Dew!"
+    end
+    if @hungriness_level < 2
+      puts "#{@name} is too hangry to exercise. Feed him some marshmallows!"
+    end
+  end
+
   def process_time
     puts "The passage of time moves on..."
     if @thirst_level > 0
@@ -81,8 +107,6 @@ class BabyDragon
       end
       puts "#{@name} ate you to drink your blood!"
     end
-
-    puts "#{@thirst_level}"
 
     if @thirst_level >= 7 && @thirst_level < 11
       puts "Give that dragon some Mountain Dew!"
@@ -106,3 +130,5 @@ class BabyDragon
 end
 
 dees_dragon = BabyDragon.new("Robert")
+
+puts dees_dragon.exercise
