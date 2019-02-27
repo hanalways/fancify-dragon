@@ -28,7 +28,7 @@ class BabyDragon
 
   def eat
     @hungriness_level = 10
-    puts "#{@name} ate like 6 bags of marshmallows (yo...)"
+    puts ColorizedString["#{@name} ate like 6 bags of marshmallows (yo...)!"].white.on_light_magenta
     puts "
     ____ __
     { --.\  |          
@@ -111,9 +111,9 @@ ____    ____               ____    ____
     if @thirst_level >= 7 && @thirst_level < 11
       puts "Give that dragon some Mountain Dew!"
     elsif @thirst_level >= 5 && @thirst_level < 7
-      puts "Uh oh. That dragon is \"thirsty thirsty \" ... you need to give him something to drink now!"
+      puts ColorizedString["Uh oh. That dragon is \"thirsty thirsty \" ... you need to give him something to drink now!"].white.on_yellow
     elsif @thirst_level > 2 && @thirst_level < 5
-      puts "He is so thirsty he is dying!"
+      puts ColorizedString["He is so thirsty he is dying!"].white.on_red.blink
     end
 
     if @hungriness_level > 0
@@ -123,7 +123,7 @@ ____    ____               ____    ____
         @is_asleep = false
         puts "#{@name} woke up!"
       end
-      puts "#{@name} is hangry and thirsty! They EAT YOU!"
+      puts ColorizedString["#{@name} is hangry! They EAT YOU!"].white.on_red.blink
       exit
     end
   end
